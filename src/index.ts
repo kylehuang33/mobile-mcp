@@ -12,23 +12,23 @@ const startSseServer = async (port: number) => {
 
 	let transport: SSEServerTransport | null = null;
 
-	app.post("/mcp", (req, res) => {
+	app.post("/sse", (req, res) => {
 		if (transport) {
 			transport.handlePostMessage(req, res);
 		}
 	});
 
-	app.get("/mcp", (req, res) => {
+	app.get("/sse", (req, res) => {
 		if (transport) {
 			transport.close();
 		}
 
-		transport = new SSEServerTransport("/mcp", res);
+		transport = new SSEServerTransport("/sse", res);
 		server.connect(transport);
 	});
 
 	app.listen(port, () => {
-		error(`mobile-mcp ${getAgentVersion()} sse server listening on http://localhost:${port}/mcp`);
+		error(`mobile-mcp ${getAgentVersion()} sse server listening on http://localhost:${port}/sse`);
 	});
 };
 
