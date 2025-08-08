@@ -89,7 +89,8 @@ if __name__ == "__main__":
     mcp.run(
         transport="sse", 
         host="localhost",
-        port=6001
+        port=6001,
+        path=""
     )
     # testing()
 
