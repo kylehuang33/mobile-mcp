@@ -27,7 +27,7 @@ async def _create_calendar_event(title: str, start_time: str, duration_minutes: 
         return f"❌ Failed to create event: {e}"
 
 
-mcp = FastMCP("adb_server", host="0.0.0.0")
+mcp = FastMCP("adb_server", host="0.0.0.0", sse_path='/')
 
 @mcp.tool()
 async def create_calendar_event(
@@ -89,8 +89,7 @@ if __name__ == "__main__":
     mcp.run(
         transport="sse", 
         host="localhost",
-        port=6001,
-        path=""
+        port=6001
     )
     # testing()
 
