@@ -65,6 +65,32 @@ async def create_calendar_event(
         return f"Failed to create event:\n{e.output.decode('utf-8')}"
 
 
+
+@mcp.tool()
+async def youtube_search_and_click(
+    query: str,
+) -> str:
+    """
+    Open the YouTube app, search the given query, and open the first result.
+
+    Args:
+        query: the query e.g. "spider man" 
+
+    Returns:
+        Log of what was executed and any output.
+    """
+    try:
+
+        command = [
+            "bash",
+            "./scripts/yt_search.sh",  # Replace with full path if needed
+            query,
+        ]
+        output = subprocess.check_output(command, stderr=subprocess.STDOUT).decode("utf-8")
+        return f"Event created successfully:\n{output}"
+    except subprocess.CalledProcessError as e:
+        return f"Failed to create event:\n{e.output.decode('utf-8')}"
+
 def testing():
 
     # Test values

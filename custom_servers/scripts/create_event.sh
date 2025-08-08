@@ -48,3 +48,8 @@ sleep 2
 adb shell input tap "$SAVE_BUTTON_X" "$SAVE_BUTTON_Y"
 
 echo ">> DONE: Event created successfully."
+
+
+sleep 3
+
+adb shell monkey -p com.example.local_llm -c android.intent.category.LAUNCHER 1

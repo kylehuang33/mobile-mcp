@@ -3,16 +3,22 @@ from fastmcp import Client
 from fastmcp.client.transports import SSETransport
 
 async def example():
-    async with Client(transport=SSETransport("http://localhost:6001/sse")) as client:
+    async with Client(transport=SSETransport("http://localhost:6001")) as client:
     # await client.ping()
-        # tools = await client.list_tools()
-        # print(f"Available tools: {tools}")
+        tools = await client.list_tools()
+        print(f"Available tools: {tools}")
 
 
-        result = await client.call_tool("create_calendar_event", {
-                "title": "My Event from the Client",
-                "start_time": "2025-08-09T11:00:00",
-                "duration_minutes": 30
+        # result = await client.call_tool("create_calendar_event", {
+        #         "title": "My Event from the Client",
+        #         "start_time": "2025-08-09T11:00:00",
+        #         "duration_minutes": 30
+        # })
+        # print("result:", result)
+
+
+        result = await client.call_tool("youtube_search_and_click", {
+            "query": "spider man"
         })
         print("result:", result)
 
